@@ -1,0 +1,62 @@
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 6rpx;
+  margin-right: 12rpx;
+}
+
+.fmt {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.value {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  line-height: 1.7;
+  word-break: break-all;
+  color: var(--text);
+  padding: 24rpx;
+  background: var(--surface-alt);
+  border-radius: 16rpx;
+}
+
+.stats {
+  display: flex;
+  margin-top: 24rpx;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: var(--text-3);
+  margin-top: 2rpx;
+}
+
+.notice {
+  background: var(--surface-alt);
+  box-shadow: none;
+}
+
+.notice-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-2);
+  margin-bottom: 8rpx;
+}
+
+.notice-text {
+  font-size: 22rpx;
+  color: var(--text-3);
+  line-height: 1.7;
+}

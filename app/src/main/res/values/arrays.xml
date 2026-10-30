@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="generator_formats">
+        <item>QR Code（二维码）</item>
+        <item>Data Matrix（DM码）</item>
+        <item>PDF417</item>
+        <item>Aztec</item>
+        <item>Code 128（条形码）</item>
+        <item>Code 39（条形码）</item>
+        <item>Code 93（条形码）</item>
+        <item>EAN-13（商品码）</item>
+        <item>EAN-8（商品码）</item>
+        <item>Codabar（条形码）</item>
+        <item>ITF（交叉二五码）</item>
+    </string-array>
+
+    <string-array name="ec_levels">
+        <item>L · 低（约 7%）</item>
+        <item>M · 中（约 15%）</item>
+        <item>Q · 标准（约 25%）</item>
+        <item>H · 高（约 30%）</item>
+    </string-array>
+
+    <string-array name="image_sources">
+        <item>单次扫码</item>
+        <item>连续扫码</item>
+        <item>图片识别</item>
+    </string-array>
+</resources>

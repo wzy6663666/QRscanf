@@ -1,0 +1,15 @@
+.gradle/
+build/
+app/build/
+.tools/
+local.properties
+*.iml
+.idea/
+.DS_Store
+
+# WorkBuddy 项目记忆/缓存（不要上传到 GitHub）
+.workbuddy/
+
+# 日志文件
+*.log
+debug.log

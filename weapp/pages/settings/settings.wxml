@@ -1,0 +1,50 @@
+<view class="page">
+  <view class="card">
+    <view class="switch-row">
+      <view class="grow">
+        <view class="s-title">识别后自动复制</view>
+        <view class="s-sub">扫到内容后立刻写入剪贴板</view>
+      </view>
+      <switch checked="{{settings.autoCopy}}" color="#5B6CF9" data-key="autoCopy" bindchange="onSwitch" />
+    </view>
+    <view class="switch-row">
+      <view class="grow">
+        <view class="s-title">扫描提示</view>
+        <view class="s-sub">识别成功时轻微震动</view>
+      </view>
+      <switch checked="{{settings.feedback}}" color="#5B6CF9" data-key="feedback" bindchange="onSwitch" />
+    </view>
+    <view class="switch-row">
+      <view class="grow">
+        <view class="s-title">连续扫码自动去重</view>
+        <view class="s-sub">相同码制 + 相同内容只保留一条</view>
+      </view>
+      <switch checked="{{settings.dedupe}}" color="#5B6CF9" data-key="dedupe" bindchange="onSwitch" />
+    </view>
+    <view class="switch-row last">
+      <view class="grow">
+        <view class="s-title">保存生成记录</view>
+        <view class="s-sub">保存图片时顺带记录码制与参数</view>
+      </view>
+      <switch checked="{{settings.saveGenRecord}}" color="#5B6CF9" data-key="saveGenRecord" bindchange="onSwitch" />
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-between" bindtap="clearAll">
+      <text class="danger">清空全部本地数据</text>
+      <text class="muted">扫码记录 + 生成记录</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="title">关于</view>
+    <view class="about-line"><text class="k">版本</text><text class="v">1.0.0（小程序版）</text></view>
+    <view class="about-line"><text class="k">识别</text><text class="v">13 种码制，由微信扫码引擎完成</text></view>
+    <view class="about-line"><text class="k">生成</text><text class="v">QR / DM / Code128 / Code39 / Code93 / EAN-13 / EAN-8 / ITF</text></view>
+    <view class="about-line"><text class="k">暂不支持生成</text><text class="v">PDF417 / Aztec / Codabar</text></view>
+    <view class="about-line last"><text class="k">数据</text><text class="v">全部保存在本机，不上传</text></view>
+  </view>
+
+  <view class="foot">与安卓版 QRscanf 同源的编码实现，二维码 / Data Matrix / 一维码编码器均为本地纯 JS 实现。</view>
+</view>

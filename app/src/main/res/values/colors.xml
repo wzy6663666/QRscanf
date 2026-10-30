@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_blue">#5B6CF9</color>
+    <color name="brand_blue_dark">#4453E8</color>
+    <color name="brand_blue_light">#7B8BFF</color>
+    <color name="brand_violet">#7B61FF</color>
+    <color name="bg">#F3F4F9</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_alt">#F7F8FC</color>
+    <color name="text_primary">#1F2430</color>
+    <color name="text_secondary">#6B7280</color>
+    <color name="text_tertiary">#9AA1AE</color>
+    <color name="divider">#E8EAF2</color>
+    <color name="accent_orange">#F57C3D</color>
+    <color name="accent_orange_bg">#FFF2E9</color>
+    <color name="accent_green">#0FB981</color>
+    <color name="accent_red">#E5484D</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="scanner_bg">#0B0D13</color>
+    <color name="scanner_dim">#B3000000</color>
+    <color name="nav_item">#8C93A3</color>
+</resources>

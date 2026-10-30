@@ -1,0 +1,124 @@
+<view class="page">
+  <scroll-view class="format-bar" scroll-x enable-flex show-scrollbar="{{false}}">
+    <view
+      wx:for="{{formats}}"
+      wx:key="key"
+      class="chip {{item.key === format ? 'chip-active' : ''}} {{item.canGenerate ? '' : 'chip-off'}}"
+      data-key="{{item.key}}"
+      bindtap="selectFormat"
+    >{{item.label}}</view>
+  </scroll-view>
+
+  <view class="card">
+    <view class="row-between">
+      <text class="field-label">{{hint}}</text>
+      <text class="muted">{{content.length}} 字</text>
+    </view>
+    <textarea
+      class="textarea"
+      value="{{content}}"
+      placeholder="{{placeholder}}"
+      placeholder-class="ph"
+      maxlength="-1"
+      auto-height
+      bindinput="onContentInput"
+    />
+    <view class="row" style="margin-top:16rpx">
+      <button class="btn btn-sm btn-ghost" bindtap="goClone">扫描填充 / 复刻</button>
+      <view style="width:16rpx"></view>
+      <button class="btn btn-sm" bindtap="pasteContent">粘贴</button>
+      <view style="width:16rpx"></view>
+      <button class="btn btn-sm" bindtap="clearContent">清空</button>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-between" bindtap="toggleOptions">
+      <text class="title">高级参数</text>
+      <text class="muted">{{showOptions ? '收起' : '展开'}}</text>
+    </view>
+
+    <block wx:if="{{showOptions}}">
+      <block wx:if="{{format === 'QR_CODE'}}">
+        <view class="field-label" style="margin-top:24rpx">纠错级别</view>
+        <view class="row" style="flex-wrap:wrap">
+          <view
+            wx:for="{{ecLevels}}"
+            wx:key="*this"
+            class="chip {{opts.ecLevel === item ? 'chip-active' : ''}}"
+            data-value="{{item}}"
+            bindtap="setEc"
+          >{{item}}</view>
+        </view>
+
+        <view class="field-label">QR 版本</view>
+        <picker range="{{versionRange}}" value="{{versionIndex}}" bindchange="setVersion">
+          <view class="field picker-field">{{versionRange[versionIndex]}}</view>
+        </picker>
+
+        <view class="field-label">掩码图案</view>
+        <picker range="{{maskRange}}" value="{{maskIndex}}" bindchange="setMask">
+          <view class="field picker-field">{{maskRange[maskIndex]}}</view>
+        </picker>
+
+        <view class="field-label">字符编码</view>
+        <view class="row">
+          <view class="chip {{opts.encoding === 'utf8' ? 'chip-active' : ''}}" data-value="utf8" bindtap="setEncoding">UTF-8</view>
+          <view class="chip {{opts.encoding === 'latin1' ? 'chip-active' : ''}}" data-value="latin1" bindtap="setEncoding">ISO-8859-1</view>
+        </view>
+      </block>
+
+      <view class="field-label" style="margin-top:{{format === 'QR_CODE' ? '16rpx' : '24rpx'}}">图片边长 {{opts.size}} px</view>
+      <slider min="360" max="1200" step="60" value="{{opts.size}}" activeColor="#5B6CF9" block-size="20" bindchanging="onSizeChange" bindchange="onSizeChange" />
+
+      <view class="field-label">留白模块 {{opts.quiet}}</view>
+      <slider min="0" max="8" step="1" value="{{opts.quiet}}" activeColor="#5B6CF9" block-size="20" bindchanging="onQuietChange" bindchange="onQuietChange" />
+
+      <view class="field-label" style="margin-top:16rpx">前景色</view>
+      <view class="swatches">
+        <view
+          wx:for="{{fgSwatches}}"
+          wx:key="*this"
+          class="swatch {{opts.fg === item ? 'swatch-active' : ''}}"
+          style="background:{{item}}"
+          data-key="fg"
+          data-value="{{item}}"
+          bindtap="setColor"
+        ></view>
+      </view>
+      <input class="field input mono" value="{{opts.fg}}" data-key="fg" bindinput="onHexInput" placeholder="#000000" />
+
+      <view class="field-label">背景色</view>
+      <view class="swatches">
+        <view
+          wx:for="{{bgSwatches}}"
+          wx:key="*this"
+          class="swatch {{opts.bg === item ? 'swatch-active' : ''}}"
+          style="background:{{item}}"
+          data-key="bg"
+          data-value="{{item}}"
+          bindtap="setColor"
+        ></view>
+      </view>
+      <input class="field input mono" value="{{opts.bg}}" data-key="bg" bindinput="onHexInput" placeholder="#FFFFFF" />
+    </block>
+  </view>
+
+  <view class="card preview-card">
+    <view class="row-between" style="margin-bottom:16rpx">
+      <text class="title">预览</text>
+      <text class="muted" wx:if="{{error}}">参数有误</text>
+      <text class="muted" wx:else>{{detail}}</text>
+    </view>
+    <view class="canvas-wrap" style="background:{{opts.bg}}">
+      <canvas type="2d" id="preview" class="preview-canvas"></canvas>
+      <view class="canvas-error" wx:if="{{error}}">{{error}}</view>
+    </view>
+    <view class="warn" wx:if="{{inverted}}">当前是反色码（浅色前景 + 深色背景），部分扫码器可能识别不出，建议改回深色前景、浅色背景。</view>
+    <view class="row" style="margin-top:24rpx">
+      <button class="btn btn-primary btn-sm grow" bindtap="saveImage">保存到相册</button>
+      <view style="width:16rpx"></view>
+      <button class="btn btn-sm grow" bindtap="copyContent">复制内容</button>
+    </view>
+  </view>
+</view>
