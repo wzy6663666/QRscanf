@@ -1,0 +1,61 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero-title">QRscanf</view>
+    <view class="hero-sub">扫码识别 · 条码生成 · 13 种码制</view>
+    <view class="hero-tags">
+      <text class="tag">识别在本地完成</text>
+      <text class="tag">不联网</text>
+      <text class="tag">不上传</text>
+    </view>
+  </view>
+
+  <view class="grid">
+    <view class="tile" bindtap="startScan" data-mode="single">
+      <view class="tile-badge" style="background:#EEF0FF;color:#5B6CF9">单</view>
+      <view class="tile-title">单次扫码</view>
+      <view class="tile-sub">识别一个码后立即返回</view>
+    </view>
+    <view class="tile" bindtap="startScan" data-mode="continuous">
+      <view class="tile-badge" style="background:#E7F8F1;color:#0FB981">连</view>
+      <view class="tile-title">连续扫码</view>
+      <view class="tile-sub">连续识别并自动去重</view>
+    </view>
+    <view class="tile" bindtap="goImage">
+      <view class="tile-badge" style="background:#FFF2E9;color:#F57C3D">图</view>
+      <view class="tile-title">图片识别</view>
+      <view class="tile-sub">从相册选图识别</view>
+    </view>
+    <view class="tile" bindtap="goClone">
+      <view class="tile-badge" style="background:#F3EEFF;color:#8E54E9">复</view>
+      <view class="tile-title">扫描复刻</view>
+      <view class="tile-sub">读出版本 / 掩码 / 配色</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row-between" style="margin-bottom:8rpx">
+      <text class="title">最近记录</text>
+      <text class="link" bindtap="goRecords">全部</text>
+    </view>
+    <block wx:if="{{recent.length}}">
+      <view class="rec" wx:for="{{recent}}" wx:key="id" bindtap="openRecord" data-index="{{index}}">
+        <view class="rec-dot" style="background:{{item.color}}"></view>
+        <view class="grow">
+          <view class="rec-value ellipsis">{{item.value}}</view>
+          <view class="rec-meta">{{item.formatLabel}} · {{item.type}} · {{item.timeText}}</view>
+        </view>
+      </view>
+    </block>
+    <view wx:else class="empty">还没有记录，先去扫一个码</view>
+  </view>
+
+  <view class="card row-between" bindtap="goSettings">
+    <text class="title">设置</text>
+    <text class="muted">自动复制 · 去重 · 数据清理 ›</text>
+  </view>
+
+  <view class="card notice">
+    <view class="notice-title">小程序版说明</view>
+    <view class="notice-text">解码由微信客户端的扫码引擎完成，13 种码制的识别都在手机本地进行；生成码由本小程序内的编码器实时绘制。当前版本不支持生成 PDF417 / Aztec / Codabar，但都能正常识别。</view>
+  </view>
+</view>

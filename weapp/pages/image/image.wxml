@@ -1,0 +1,27 @@
+<view class="page">
+  <view class="card">
+    <view class="title">从相册识别</view>
+    <view class="muted" style="margin-top:8rpx">
+      一次选择一张图片识别。想连续识别多张，识别完继续点按钮即可，结果会自动累积并按「码制 + 内容」去重。
+    </view>
+    <button class="btn btn-primary" style="margin-top:24rpx" bindtap="pickImage">选择图片识别</button>
+    <view class="hint">一张图里有多个码时，微信扫码只能返回其中一个；需要逐个识别请分别截图。</view>
+  </view>
+
+  <view class="card" wx:if="{{results.length}}">
+    <view class="row-between">
+      <text class="title">已识别 {{results.length}} 个</text>
+      <text class="muted" bindtap="clearAll">清空</text>
+    </view>
+    <view class="item" wx:for="{{results}}" wx:key="key">
+      <view class="dot" style="background:{{item.color}}"></view>
+      <view class="grow">
+        <view class="value wrap-2">{{item.value}}</view>
+        <view class="meta">{{item.formatLabel}} · {{item.type}} · {{item.timeText}}</view>
+      </view>
+      <text class="action" catchtap="copyOne" data-index="{{index}}">复制</text>
+    </view>
+    <view class="divider"></view>
+    <button class="btn btn-ghost" bindtap="copyAll">复制全部</button>
+  </view>
+</view>

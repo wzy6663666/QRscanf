@@ -1,0 +1,84 @@
+.format-bar {
+  white-space: nowrap;
+  margin-bottom: 8rpx;
+}
+
+.format-bar .chip {
+  display: inline-flex;
+}
+
+.chip-off {
+  color: #C2C7D2;
+  text-decoration: line-through;
+}
+
+.ph {
+  color: #B6BCC8;
+}
+
+.picker-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12rpx;
+}
+
+.swatch {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 16rpx;
+  margin: 0 16rpx 12rpx 0;
+  border: 2rpx solid rgba(31, 36, 48, 0.12);
+  box-sizing: border-box;
+}
+
+.swatch-active {
+  border: 4rpx solid var(--brand);
+}
+
+.preview-card {
+  padding-bottom: 24rpx;
+}
+
+.canvas-wrap {
+  position: relative;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.preview-canvas {
+  width: 620rpx;
+  height: 620rpx;
+}
+
+.canvas-error {
+  position: absolute;
+  left: 24rpx;
+  right: 24rpx;
+  bottom: 24rpx;
+  background: rgba(229, 72, 77, 0.92);
+  color: #FFFFFF;
+  font-size: 24rpx;
+  padding: 12rpx 16rpx;
+  border-radius: 12rpx;
+}
+
+.warn {
+  margin-top: 20rpx;
+  background: #FFF7E8;
+  color: #8A5A12;
+  font-size: 23rpx;
+  line-height: 1.6;
+  padding: 16rpx 20rpx;
+  border-radius: 12rpx;
+}

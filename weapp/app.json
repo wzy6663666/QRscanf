@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/scan/scan",
+    "pages/generate/generate",
+    "pages/records/records",
+    "pages/image/image",
+    "pages/clone/clone",
+    "pages/settings/settings",
+    "pages/result/result"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#F3F4F9",
+    "navigationBarTitleText": "QRscanf",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F3F4F9"
+  },
+  "tabBar": {
+    "color": "#8C93A3",
+    "selectedColor": "#5B6CF9",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/tabbar/home.png",
+        "selectedIconPath": "assets/tabbar/home-on.png"
+      },
+      {
+        "pagePath": "pages/scan/scan",
+        "text": "扫码",
+        "iconPath": "assets/tabbar/scan.png",
+        "selectedIconPath": "assets/tabbar/scan-on.png"
+      },
+      {
+        "pagePath": "pages/generate/generate",
+        "text": "生成",
+        "iconPath": "assets/tabbar/generate.png",
+        "selectedIconPath": "assets/tabbar/generate-on.png"
+      },
+      {
+        "pagePath": "pages/records/records",
+        "text": "记录",
+        "iconPath": "assets/tabbar/records.png",
+        "selectedIconPath": "assets/tabbar/records-on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

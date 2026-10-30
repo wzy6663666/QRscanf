@@ -1,0 +1,53 @@
+<view class="page" wx:if="{{record}}">
+  <view class="card">
+    <view class="row-between">
+      <view class="row">
+        <view class="dot" style="background:{{record.color}}"></view>
+        <text class="fmt">{{record.formatLabel}}</text>
+        <text class="tag" style="margin-left:12rpx">{{record.type}}</text>
+      </view>
+      <text class="muted">{{record.timeText}}</text>
+    </view>
+
+    <view class="value mono" selectable="{{true}}" user-select="{{true}}">{{record.value}}</view>
+
+    <view class="stats">
+      <view class="stat">
+        <view class="stat-num">{{record.length}}</view>
+        <view class="stat-label">字符</view>
+      </view>
+      <view class="stat">
+        <view class="stat-num">{{record.bytes}}</view>
+        <view class="stat-label">字节</view>
+      </view>
+      <view class="stat">
+        <view class="stat-num">{{record.lines}}</view>
+        <view class="stat-label">行数</view>
+      </view>
+    </view>
+
+    <view class="divider"></view>
+    <view class="row">
+      <button class="btn btn-primary btn-sm grow" bindtap="copy">复制内容</button>
+      <view style="width:16rpx"></view>
+      <button class="btn btn-sm grow" bindtap="regenerate">生成同内容</button>
+    </view>
+    <view class="row" style="margin-top:16rpx" wx:if="{{record.canOpen}}">
+      <button class="btn btn-ghost btn-sm grow" bindtap="openLink">打开链接</button>
+      <view style="width:16rpx"></view>
+      <button class="btn btn-danger btn-sm grow" bindtap="remove">删除记录</button>
+    </view>
+    <view class="row" style="margin-top:16rpx" wx:else>
+      <button class="btn btn-danger btn-sm grow" bindtap="remove">删除记录</button>
+    </view>
+  </view>
+
+  <view class="card notice">
+    <view class="notice-title">内容类型判定</view>
+    <view class="notice-text">按内容前缀自动归类：http/https → 网址，WIFI: → WiFi，mailto: → 邮箱，tel: → 电话，smsto:/sms: → 短信，BEGIN:VCARD → 名片，geo: → 位置，otpauth: → 动态口令，纯数字 → 数字，其余 → 文本。</view>
+  </view>
+</view>
+
+<view class="page" wx:else>
+  <view class="card empty">没有找到这条记录</view>
+</view>

@@ -1,0 +1,90 @@
+<view class="page">
+  <view class="card">
+    <view class="title">扫描填充 / 复刻</view>
+    <view class="muted" style="margin-top:8rpx">
+      选一张码的图片，读出它的码制、版本、掩码、纠错级别与配色，再把参数填进生成页；也可以直接把内容识别出来。
+    </view>
+    <view class="row" style="margin-top:24rpx">
+      <button class="btn btn-primary btn-sm grow" bindtap="chooseFromAlbum">从相册选图</button>
+      <view style="width:16rpx"></view>
+      <button class="btn btn-sm grow" bindtap="takePhoto">拍照</button>
+    </view>
+  </view>
+
+  <block wx:if="{{stage === 'analyzing'}}">
+    <view class="card empty">正在分析图片…</view>
+  </block>
+
+  <block wx:if="{{stage === 'done'}}">
+    <view class="card">
+      <view class="row-between">
+        <text class="title">解析结果</text>
+        <text class="tag" style="color:{{formatColor}};background:{{formatBg}}">{{formatLabel}}</text>
+      </view>
+
+      <view class="kv" wx:for="{{rows}}" wx:key="k">
+        <text class="k">{{item.k}}</text>
+        <text class="v">{{item.v}}</text>
+      </view>
+
+      <view class="colors" wx:if="{{analysis.fg}}">
+        <view class="color-cell">
+          <view class="color-chip" style="background:{{analysis.fg}}"></view>
+          <text class="color-text">前景 {{analysis.fg}}</text>
+        </view>
+        <view class="color-cell">
+          <view class="color-chip" style="background:{{analysis.bg}}"></view>
+          <text class="color-text">背景 {{analysis.bg}}</text>
+        </view>
+      </view>
+
+      <view class="hint">{{analysis.note}}</view>
+    </view>
+
+    <view class="card">
+      <view class="title">内容</view>
+      <view class="field" style="margin-top:16rpx">
+        <textarea
+          class="textarea"
+          style="min-height:120rpx"
+          value="{{content}}"
+          placeholder="点下方「识别内容」用同一张图读出内容，或直接手动输入"
+          placeholder-class="ph"
+          bindinput="onContentInput"
+        />
+      </view>
+      <view class="row">
+        <button class="btn btn-ghost btn-sm grow" bindtap="scanContent">识别内容</button>
+        <view style="width:16rpx"></view>
+        <button class="btn btn-sm grow" bindtap="copyContent">复制</button>
+      </view>
+      <view class="hint">小程序无法把「相册里的这张图」直接交给解码器，所以需要你再选一次同一张图片；拍摄实物码时也可以直接对着它扫。</view>
+    </view>
+
+    <view class="card">
+      <view class="row-between">
+        <text class="title">对比预览</text>
+        <text class="muted">左：原图 · 右：按参数重生</text>
+      </view>
+      <view class="compare">
+        <view class="compare-cell">
+          <image class="compare-img" src="{{imagePath}}" mode="aspectFit" bindtap="previewImage" />
+        </view>
+        <view class="compare-cell">
+          <canvas type="2d" id="gen" class="compare-canvas" style="background:{{analysis.bg}}"></canvas>
+          <view class="compare-tip" wx:if="{{noPreview}}">先填入内容才能重生</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="row" style="margin-bottom:24rpx">
+      <button class="btn btn-primary grow" bindtap="applyToGenerate">把参数带到生成页</button>
+    </view>
+  </block>
+
+  <block wx:if="{{stage === 'fail'}}">
+    <view class="card empty">{{failMessage}}</view>
+  </block>
+</view>
+
+<canvas type="2d" id="work" class="work-canvas"></canvas>
